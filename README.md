@@ -1,6 +1,6 @@
 # Ninja Blossom — ตำนานนินจาซากุระ (Godot 4.7.2)
 
-**ผู้จัดทำ:** ภูริชญา โมรานะ (Purichaya Morana) — แบบฝึกหัดที่ 5 First 3D Game
+**ผู้จัดทำ:** ภูริชญา โมรา (Purichaya Mora) — แบบฝึกหัดที่ 5 First 3D Game
 
 เกม 3D Platformer ต่อยอดจาก **3D Platformer Starter Kit** (The Silver Demons / SD Studios, CC0)
 

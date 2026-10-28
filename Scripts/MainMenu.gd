@@ -62,7 +62,7 @@ func _ready():
 	back.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	v.add_child(back)
 
-	var credit := label("จัดทำโดย ภูริชญา โมรานะ  •  ต่อยอดจาก 3D Platformer Starter Kit (SD Studios)  •  ตัวละคร Ninja โดย Quaternius (poly.pizza)", 16, false, Color(1, 1, 1, 0.8), 6)
+	var credit := label("จัดทำโดย ภูริชญา โมรา  •  ต่อยอดจาก 3D Platformer Starter Kit (SD Studios)  •  ตัวละคร Ninja โดย Quaternius (poly.pizza)", 16, false, Color(1, 1, 1, 0.8), 6)
 	credit.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	credit.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	credit.grow_vertical = Control.GROW_DIRECTION_BEGIN

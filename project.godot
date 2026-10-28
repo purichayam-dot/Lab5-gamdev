@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Ninja Blossom - ภูริชญา โมรานะ"
+config/name="Ninja Blossom - ภูริชญา โมรา"
 config/description="เกม 3D Platformer ต่อยอดจาก 3D Platformer Starter Kit (SD Studios) — Godot 4.7"
 config/tags=PackedStringArray("starterkit")
 run/main_scene="res://Scenes/UI/MainMenu.tscn"

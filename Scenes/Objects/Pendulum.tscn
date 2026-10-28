@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Pendulum.gd" id="1_56w3t"]
+
+[node name="Pendulum" type="Node3D" unique_id=1790787431]
+script = ExtResource("1_56w3t")

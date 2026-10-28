@@ -1,0 +1,57 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Coin.gd" id="1_m4rpn"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Props/gem_blue.glb" id="2_025us"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/particle.png" id="3_edq6l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fmtji"]
+radius = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uo6x"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_edq6l")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_jrsui"]
+material = SubResource("StandardMaterial3D_3uo6x")
+
+[sub_resource type="Gradient" id="Gradient_kmx0l"]
+colors = PackedColorArray(0.64, 0.85, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cyuce"]
+radius = 1.7
+
+[node name="Gem" type="Area3D" unique_id=198169208]
+script = ExtResource("1_m4rpn")
+
+[node name="GemModel" type="Node3D" parent="." unique_id=1529834355 instance=ExtResource("2_025us")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=697743868]
+shape = SubResource("SphereShape3D_fmtji")
+
+[node name="Glow" type="OmniLight3D" parent="." unique_id=689304370]
+light_color = Color(0.4, 0.75, 1, 1)
+light_energy = 1.2
+omni_range = 2.6
+
+[node name="Sparkles" type="CPUParticles3D" parent="." unique_id=936824198]
+amount = 10
+lifetime = 1.2
+mesh = SubResource("QuadMesh_jrsui")
+emission_shape = 1
+emission_sphere_radius = 0.5
+spread = 180.0
+gravity = Vector3(0, 0.4, 0)
+initial_velocity_max = 0.5
+scale_amount_min = 0.12
+scale_amount_max = 0.18
+color_ramp = SubResource("Gradient_kmx0l")
+
+[node name="Range" type="Area3D" parent="." unique_id=657934541]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Range" unique_id=186823732]
+shape = SubResource("SphereShape3D_cyuce")

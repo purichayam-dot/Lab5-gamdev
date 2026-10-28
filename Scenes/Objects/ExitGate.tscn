@@ -1,0 +1,79 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/ExitGate.gd" id="1_l8gvo"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Props/torii.glb" id="2_x46vi"]
+[ext_resource type="Shader" path="res://Assets/Shaders/portal.gdshader" id="3_6b1fr"]
+[ext_resource type="FontFile" path="res://Assets/Fonts/Kanit-Bold.ttf" id="4_qggo6"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/glow.png" id="5_g4sax"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_unxko"]
+render_priority = 0
+shader = ExtResource("3_6b1fr")
+shader_parameter/color_a = null
+shader_parameter/color_b = null
+shader_parameter/power = null
+
+[sub_resource type="QuadMesh" id="QuadMesh_nuiuy"]
+size = Vector2(2.9, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rfqm4"]
+size = Vector3(2.6, 3, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfye3"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_g4sax")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_6s4ng"]
+material = SubResource("StandardMaterial3D_qfye3")
+size = Vector2(0.15, 0.15)
+
+[sub_resource type="Gradient" id="Gradient_2idia"]
+colors = PackedColorArray(0.6, 1, 1, 1, 1, 0.5, 0.9, 0)
+
+[node name="ExitGate" type="Area3D" unique_id=1510903702]
+script = ExtResource("1_l8gvo")
+
+[node name="Torii" type="Node3D" parent="." unique_id=1165950432 instance=ExtResource("2_x46vi")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[node name="Portal" type="MeshInstance3D" parent="." unique_id=581653319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+material_override = SubResource("ShaderMaterial_unxko")
+mesh = SubResource("QuadMesh_nuiuy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1849606237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_rfqm4")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1479730500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
+pixel_size = 0.006
+billboard = 1
+outline_modulate = Color(0.2, 0.05, 0.15, 1)
+text = "เก็บอัญมณีให้ครบ  0 / 0"
+font = ExtResource("4_qggo6")
+font_size = 56
+outline_size = 16
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=1472403420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0.8)
+omni_range = 8.0
+
+[node name="Sparkles" type="CPUParticles3D" parent="." unique_id=860810835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+amount = 40
+lifetime = 2.0
+mesh = SubResource("QuadMesh_6s4ng")
+emission_shape = 3
+emission_box_extents = Vector3(1.4, 1.5, 0.2)
+direction = Vector3(0, 1, 0)
+spread = 20.0
+gravity = Vector3(0, 0.6, 0)
+initial_velocity_min = 0.3
+initial_velocity_max = 0.8
+scale_amount_min = 0.8
+scale_amount_max = 1.6
+color_ramp = SubResource("Gradient_2idia")

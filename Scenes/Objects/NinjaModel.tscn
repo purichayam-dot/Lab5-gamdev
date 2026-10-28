@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/NinjaModel.gd" id="1_gc1dj"]
+[ext_resource type="AnimationLibrary" path="res://Assets/Models/Characters/ninja_animations.res" id="2_iw0m4"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Characters/Ninja.glb" id="3_8f0vt"]
+
+[node name="NinjaModel" type="Node3D" unique_id=1666831263]
+script = ExtResource("1_gc1dj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=701108412]
+root_node = NodePath("../Ninja")
+libraries/ = ExtResource("2_iw0m4")
+autoplay = &"Idle"
+
+[node name="Ninja" type="Node3D" parent="." unique_id=1568090299 instance=ExtResource("3_8f0vt")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

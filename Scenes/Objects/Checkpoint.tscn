@@ -1,0 +1,40 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Checkpoint.gd" id="1_awlgn"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Props/stone_lamp.glb" id="2_7vnxx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lo3y2"]
+size = Vector3(2.4, 3, 2.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l8ev"]
+albedo_color = Color(1, 0.7, 0.3, 1)
+emission_enabled = true
+emission = Color(1, 0.6, 0.2, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_w7ia4"]
+radius = 0.13
+height = 0.3
+radial_segments = 6
+rings = 3
+
+[node name="Checkpoint" type="Area3D" unique_id=830718115]
+script = ExtResource("1_awlgn")
+
+[node name="StoneLamp" type="Node3D" parent="." unique_id=695916680 instance=ExtResource("2_7vnxx")]
+transform = Transform3D(0.62, 0, 0, 0, 0.62, 0, 0, 0, 0.62, 0, 1.3578, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2114172477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_lo3y2")
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=478992245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+light_color = Color(1, 0.7, 0.35, 1)
+light_energy = 2.2
+omni_range = 6.0
+
+[node name="Flame" type="MeshInstance3D" parent="." unique_id=1606553190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
+material_override = SubResource("StandardMaterial3D_0l8ev")
+mesh = SubResource("SphereMesh_w7ia4")

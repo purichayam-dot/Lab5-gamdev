@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/JumpPad.gd" id="1_4bu6f"]
+
+[node name="JumpPad" type="Area3D" unique_id=73737514]
+script = ExtResource("1_4bu6f")

@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Spinner.gd" id="1_33c5k"]
+
+[node name="Spinner" type="Node3D" unique_id=2010301841]
+script = ExtResource("1_33c5k")

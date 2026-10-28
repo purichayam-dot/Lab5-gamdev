@@ -1,0 +1,72 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_x3wgy"]
+[ext_resource type="PackedScene" path="res://Scenes/Objects/NinjaModel.tscn" id="2_3smsa"]
+[ext_resource type="Script" path="res://Scripts/NinjaModel.gd" id="3_8erm5"]
+[ext_resource type="Script" path="res://Scripts/CameraMovement.gd" id="4_f1ek2"]
+[ext_resource type="ArrayMesh" path="res://Assets/Resources/cloud.res" id="5_tx1dd"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/SFX/walking.ogg" id="6_gymyn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pu2lt"]
+radius = 0.38
+height = 1.45
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ukyrk"]
+radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dp3o"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(1, 0.9, 0.93, 1)
+
+[sub_resource type="Curve" id="Curve_h4iuc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.236318, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Player" type="CharacterBody3D" unique_id=1283959061 groups=["Player"]]
+floor_snap_length = 0.3
+script = ExtResource("1_x3wgy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1339743445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.725, 0)
+shape = SubResource("CapsuleShape3D_pu2lt")
+
+[node name="Model" type="Node3D" parent="." unique_id=1666831263 instance=ExtResource("2_3smsa")]
+script = ExtResource("3_8erm5")
+
+[node name="Gimbal" type="Node3D" parent="." unique_id=1166623630]
+unique_name_in_owner = true
+script = ExtResource("4_f1ek2")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Gimbal" unique_id=672794633]
+transform = Transform3D(1, 0, 0, 0, 0.95105654, 0.309017, 0, -0.309017, 0.95105654, 0, 1.4, 0)
+shape = SubResource("SphereShape3D_ukyrk")
+spring_length = 6.0
+margin = 0.3
+
+[node name="Camera3D" type="Camera3D" parent="Gimbal/SpringArm3D" unique_id=1237308968]
+current = true
+fov = 70.0
+
+[node name="CameraControlTimer" type="Timer" parent="Gimbal" unique_id=333656256]
+wait_time = 2.0
+
+[node name="ParticleTrail" type="CPUParticles3D" parent="." unique_id=345667380]
+material_override = SubResource("StandardMaterial3D_7dp3o")
+amount = 30
+mesh = ExtResource("5_tx1dd")
+emission_shape = 1
+emission_sphere_radius = 0.2
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0.1, 0)
+scale_amount_min = 0.5
+scale_amount_max = 0.7
+scale_amount_curve = SubResource("Curve_h4iuc")
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="." unique_id=1234532807]
+stream = ExtResource("6_gymyn")
+pitch_scale = 0.75
+autoplay = true
+
+[connection signal="timeout" from="Gimbal/CameraControlTimer" to="Gimbal" method="_on_camera_control_timer_timeout"]
